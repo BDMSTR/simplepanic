@@ -1,6 +1,7 @@
 
 local cops = {}
 
+
 -- Run this when a user enters a message in chat
 RegisterServerEvent('sendChatMessage')
 AddEventHandler('sendChatMessage', function(message)
@@ -24,8 +25,9 @@ AddEventHandler('sendChatMessage', function(message)
 				-- Loop through the table cops
 				for _,id in ipairs(cops) do
 					-- Sent a chat message to all id's in the table cops 
-					TriggerClientEvent('chatMessage', -1, '', {255,255,255}, message)
+					TriggerClientEvent('chatMessage', id, '', {255,255,255}, message)
 					CancelEvent()
+					TriggerClientEvent('playSound', id)
 				end
 			-- If the resulted user is not a police officer then do the following
 			else

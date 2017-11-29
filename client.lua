@@ -3,6 +3,11 @@ AddEventHandler("properload", function()
     TriggerServerEvent( "properload")
 end)
 
+RegisterNetEvent('playSound')
+AddEventHandler('playSound', function()
+    PlaySoundFrontend(-1, "Beep_Red", "DLC_HEIST_HACKING_SNAKE_SOUNDS", 0,0,1)
+end)
+
 
 -- Make a new command "13"
 RegisterCommand('13', function(source, args, rawCommand)
