@@ -8,6 +8,28 @@ AddEventHandler('playSound', function()
     PlaySoundFrontend(-1, "Beep_Red", "DLC_HEIST_HACKING_SNAKE_SOUNDS", 0,0,1)
 end)
 
+function SetBlipOnLocation(x, y, z)
+    local blip1 = AddBlipForCoord(x, y, z)
+    SetBlipSprite(blip1, 1)
+    BeginTextCommandSetBlipName("STRING")
+    AddTextComponentString('10-13')
+    SetBlipColour(blip1, 1)
+    EndTextCommandSetBlipName(blip1)
+    Citizen.Wait(100000)
+    RemoveBlip(blip1)
+end
+
+
+RegisterNetEvent('displayblip')
+AddEventHandler('displayblip', function()
+    local pos=GetEntityCoords(GetPlayerPed(-1), true)
+    TriggerServerEvent('activateblip', pos.x,pos.y,pos.z)	
+end)
+
+RegisterNetEvent('bliplocation')
+AddEventHandler('bliplocation', function(x,y,z)
+    SetBlipOnLocation(x,y,z)
+end)
 
 -- Make a new command "13"
 RegisterCommand('13', function(source, args, rawCommand)

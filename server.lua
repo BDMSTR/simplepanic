@@ -1,6 +1,11 @@
 
 local cops = {}
 
+RegisterNetEvent('activateblip')
+AddEventHandler('activateblip', function(x,y,z)
+    TriggerClientEvent('bliplocation', -1, x,y,z)
+end)
+
 
 -- Run this when a user enters a message in chat
 RegisterServerEvent('sendChatMessage')
@@ -28,6 +33,7 @@ AddEventHandler('sendChatMessage', function(message)
 					TriggerClientEvent('chatMessage', id, '', {255,255,255}, message)
 					CancelEvent()
 					TriggerClientEvent('playSound', id)
+					TriggerClientEvent('displayblip', source)
 				end
 			-- If the resulted user is not a police officer then do the following
 			else
